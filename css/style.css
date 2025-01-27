@@ -1,0 +1,49 @@
+html {
+  background-color: bisque;
+  font-family: "Comic Sans MS";
+  font-size: 18px
+}
+
+img {
+  display: flex;
+  justify-content: center;
+}
+
+.input {
+  margin: 10px 10px;
+  min-width: 350px;
+  height: 25px;
+  border-radius: 7px;
+  border: solid grey 2px;
+  padding: 2px;
+  font-size: 18px
+}
+
+.add, .clean{
+  height: 33px;
+  width: 50px;
+  border-radius: 7px;
+  border: solid grey 2px;
+}
+
+.checklist {
+  background-color: white;
+  border: solid black 1px;
+  border-radius: 10px;
+  min-height: 400px;
+  max-width: 500px;
+  margin: 25px 0;
+  padding: 25px 10px;
+}
+
+.task {
+  margin: 5px 10px;
+  padding: 0 0 5px 0;
+  max-width: 420px;
+  border-bottom: solid darkgrey 2px;
+}
+
+.task.completed {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
