@@ -13,12 +13,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
 addButton.addEventListener('click', ()=> {
   toDoList.addTaskToList(input.value);
   toDoList.render();
+  input.value = '';
 });
 
 cleanButton.addEventListener('click', ()=> {
-  toDoList.clean();
+  toDoList.cleanList();
 })
-
 
 tasksList.addEventListener('click', (elem)=> {
   if (elem.target.type === 'checkbox'){

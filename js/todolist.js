@@ -65,7 +65,7 @@ class ToDoList{
 
   }
 
-  clean(){
+  cleanList(){
     this.list = [];
     localStorage.clear();
     this.render();
