@@ -3,26 +3,29 @@ const addButton = document.querySelector('.add');
 const cleanButton = document.querySelector('.clean');
 const tasksList = document.querySelector('.list');
 
-const toDoList = new ToDoList();
+function initApp(){
+  const toDoList = new ToDoList();
 
-document.addEventListener('DOMContentLoaded', ()=> {
   toDoList.restoreFromStorage();
+  toDoList.sortList();
   toDoList.render();
-})
 
-addButton.addEventListener('click', ()=> {
-  toDoList.addTaskToList(input.value);
-  toDoList.render();
-  input.value = '';
-});
+  addButton.addEventListener('click', ()=> {
+    toDoList.addTaskToList(input.value);
+    toDoList.sortList();
+    toDoList.render();
+    input.value = '';
+  });
 
-cleanButton.addEventListener('click', ()=> {
-  toDoList.cleanList();
-})
+  cleanButton.addEventListener('click', ()=> {
+    toDoList.cleanList();
+  })
 
-tasksList.addEventListener('click', (elem)=> {
-  if (elem.target.type === 'checkbox'){
-    toDoList.markTaskAsCompleted(elem);
-  }
-});
+  tasksList.addEventListener('click', (elem)=> {
+    if (elem.target.type === 'checkbox'){
+      toDoList.markTaskAsCompleted(elem.target.parentElement.id);
+    }
+  });
+}
 
+document.addEventListener('DOMContentLoaded', initApp);

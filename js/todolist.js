@@ -3,27 +3,26 @@ class ToDoList{
     this.list = [];
   }
 
-  addTaskToList(text, id = new Date().getTime(), isCompleted = false){
-    const task = new Task();
-    task.text = text;
-    task.id = id;
-    task.isCompleted = isCompleted;
+  addTaskToList(text, id, isCompleted){
+    const task = new Task(text, id, isCompleted);
     this.list.push(task);
 
     this.saveToStorage(this.list);
   }
 
-  markTaskAsCompleted(e){
-    const taskId = Number(e.target.parentElement.id);
+  markTaskAsCompleted(id){
+    const taskId = Number(id);
     const taskIndex = this.list.findIndex(item => item.id === taskId);
     this.list[taskIndex].markAsCompleted();
-    setTimeout(()=> this.render(), 100);
+    setTimeout(()=> {
+      this.sortList();
+      this.render()},
+      100);
 
     this.saveToStorage(this.list);
   }
 
-  render() {
-    tasksList.innerHTML = '';
+  sortList(){
     this.list.sort((itemA, itemB) => itemA.id -itemB.id);
     this.list.sort((itemA, itemB) => {
       if (itemA || itemB){
@@ -31,6 +30,10 @@ class ToDoList{
         return index;
       }
     });
+  }
+
+  render() {
+    tasksList.innerHTML = '';
     this.list.forEach((task)=> {
       const div = document.createElement('div');
       div.id = task.id;
@@ -59,15 +62,16 @@ class ToDoList{
 
   restoreFromStorage(){
     const tasks = JSON.parse(localStorage.getItem('tasks'));
-    tasks.forEach( task => {
-      this.addTaskToList(task.text, task.id, task.isCompleted)
-    })
-
+    if (tasks){
+      tasks.forEach( task => {
+        this.addTaskToList(task.text, task.id, task.isCompleted);
+      });
+    }
   }
 
   cleanList(){
     this.list = [];
-    localStorage.clear();
+    localStorage.removeItem('tasks')
     this.render();
   }
 }

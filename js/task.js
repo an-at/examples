@@ -1,8 +1,8 @@
 class Task{
-  constructor() {
-    this.id = null;
-    this.text = '';
-    this.isCompleted = false;
+  constructor(text, id = new Date().getTime(), isCompleted = false) {
+    this.text = text;
+    this.id = id;
+    this.isCompleted = isCompleted;
   }
 
   markAsCompleted(){
