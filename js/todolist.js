@@ -26,7 +26,7 @@ class ToDoList{
     this.list.sort((itemA, itemB) => itemA.id -itemB.id);
     this.list.sort((itemA, itemB) => {
       if (itemA || itemB){
-        return itemA.isCompleted ? 1 : -1;;
+        return itemA.isCompleted ? 1 : -1;
       }
     });
   }
